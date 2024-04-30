@@ -154,5 +154,4 @@ RAZOR_KEY_ID = 'rzp_test_te4SYpsbaQtEgM'
 RAZOR_KEY_SECRET = 'Lt736kZ5QDwx78X8rKVbEBRS'
 
 
-OPENAI_API_KEY = 'sk-proj-r4lfZpr1zkTM3njmrbAbT3BlbkFJsRYZj8wQSL321WnoK3Jj'
 
