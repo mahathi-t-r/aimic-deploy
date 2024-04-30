@@ -13,7 +13,6 @@ urlpatterns = [
     path('library', views.library, name='library'),
     path('search_tracks', views.search_tracks, name='search_tracks'),
     path('feedback', views.feedback, name='feedback'),
-    path('download-lyrics', views.download_lyrics, name='download_lyrics'),
     path('sid_sriram', views.sid_sriram, name='sid_sriram'),
     path('taylor', views.taylor, name='taylor'),
     path('anirudh', views.anirudh, name='anirudh'),
