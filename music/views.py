@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 import base64
 import requests
 from .models import Feedback
-import lyricsgenius as lg
 import os
 from django.http import FileResponse
 from .models import Music
@@ -131,40 +130,6 @@ def feedback(request):
         return redirect('/')
     else:
         return render(request, 'feedback.html')
-
-
-genius = lg.Genius('o2Kw8cnBKeCPUfPmjyGsTXlKmz3WjGjS3UaeZYGAkjAnQjL85Br9Utm5tv9xC4Yf')
-
-@login_required(login_url='login')
-def download_lyrics(request):
-    if request.method == 'POST':
-        song = request.POST.get('song')
-        action = request.POST.get('action')
-
-        if action == 'Download':
-            try:
-                result = genius.search_song(song)
-                if result:
-                    filename = f"{song}_lyrics.txt"
-                    desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop', filename)
-                    with open(desktop_path, "w", encoding="utf-8") as file:
-                        file.write(result.lyrics)
-                    return HttpResponse(f"Lyrics downloaded successfully! <a href='/'>Go back</a>")
-                else:
-                    return HttpResponse("Song not found")
-            except Exception as e:
-                return HttpResponse(f"Error downloading lyrics: {e}")
-        elif action == 'Display':
-            try:
-                result = genius.search_song(song)
-                if result:
-                    lyrics = {song: result.lyrics}
-                    return render(request, 'display_lyrics.html', {'lyrics': lyrics})
-                else:
-                    return HttpResponse("Song not found")
-            except Exception as e:
-                return HttpResponse(f"Error displaying lyrics: {e}")
-    return render(request, 'download_lyrics.html')
 
 def sid_sriram(request):
     return render(request, 'sid_sriram.html')
