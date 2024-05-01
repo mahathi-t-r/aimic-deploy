@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_)1m8e*ynu@m(h)e6@=kx0a1zp48ndp01ubzvx=sj&9e=7g1fw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'aimic.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'aimic.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
- 'default': {
- 'ENGINE': 'django.db.backends.postgresql',
- 'NAME': 'aimic',
- 'USER': 'postgres',
- 'PASSWORD': 'm1a2h3a4',
- 'HOST': 'localhost',
- 'PORT': '5432',
- }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'aimic',
+        'USER': 'postgres',
+        'PASSWORD': 'm1a2h3a4',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 
@@ -116,42 +116,30 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-MEDIA_URL='/media/'
+
+# Media files (Uploaded files)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# settings.py
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Continue with other settings...
-
-# Add your Spotify client ID and client secret here
+# Spotify and Razorpay keys
 SPOTIFY_CLIENT_ID = '44610704e5214488b5a442e4749fa811'
 SPOTIFY_CLIENT_SECRET = '0d72c4ba050e4630a66caceacfccfcd1'
-
-
-
-APPEND_SLASH = False
-
-RAZOR_KEY_ID = 'rzp_test_te4SYpsbaQtEgM'
-RAZOR_KEY_SECRET = 'Lt736kZ5QDwx78X8rKVbEBRS'
-
-
-
